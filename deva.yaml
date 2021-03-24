@@ -1,10 +1,12 @@
 ---
 - name: Sample playbook to install and configure vsftpd
-  hosts: test
+  hosts: client
   vars:
     pkg_state: present
     svc_state: started
     pkg_name: vsftpd
+    variable1: 'Hello'
+    variable2: 'Arun'
 
   tasks: 
   - name: get variable from facts
@@ -26,7 +28,7 @@
   - name: Copy index.html to targets
     ansible.builtin.copy:
       src: index.html
-      dest: /var/www/html
+      dest: /etc/
       mode: '0755'
 
   - name: service "{{ pkg_name }}"  start
@@ -35,5 +37,13 @@
       state: "{{ svc_state }}"
       enabled: yes
 # comment added by Arun
+  - name: Template a file to /etc/file.conf
+    ansible.builtin.template:
+      src: sample.j2
+      dest: /etc/file.conf
+      owner: root
+      group: root
+      mode: '0644'
+
 ...
 
