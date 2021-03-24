@@ -5,8 +5,8 @@
     pkg_state: present
     svc_state: started
     pkg_name: vsftpd
-    variable1: 'Hello'
-    variable2: 'Arun'
+    variable1: 'Welcome'
+    variable2: 'Aruns Ansible demo'
 
   tasks: 
   - name: get variable from facts
@@ -46,4 +46,3 @@
       mode: '0644'
 
 ...
-
