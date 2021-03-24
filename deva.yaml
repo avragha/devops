@@ -10,7 +10,8 @@
     variable2: 'Arun'
     variable3: 'Hello Ragha'
     variable4: 'Hello Deva,John,Hari'
-
+    variable_listen: 'YES'
+    variable_anonymous: 'MAYBE'
   tasks: 
   - name: get variable from facts
     debug: 
@@ -30,8 +31,8 @@
 
   - name: Copy index.html to targets
     ansible.builtin.copy:
-      src: index.html
-      dest: /etc/
+      src: index.conf
+      dest: /etc/vsftpd.conf
       mode: '0755'
 
   - name: service "{{ pkg_name }}"  start
