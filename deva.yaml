@@ -1,0 +1,39 @@
+---
+- name: Sample playbook to install and configure vsftpd
+  hosts: test
+  vars:
+    pkg_state: present
+    svc_state: started
+    pkg_name: vsftpd
+
+  tasks: 
+  - name: get variable from facts
+    debug: 
+      msg: This machine time zone runs @ {{ ansible_date_time.tz }} 
+      
+  - name: install "{{ pkg_name }}" when the OS is Ubuntu
+    apt:
+      pkg: "{{ pkg_name }}"
+      state: "{{ pkg_state }}"
+    when: ansible_os_family == "Debian" 
+
+  - name: install "{{ pkg_name }}"  when the OS is redhat/centos
+    yum:
+      name: "{{ pkg_name }}"
+      state: "{{ pkg_state }}"
+    when: ansible_os_family == "RedHat" 
+
+  - name: Copy index.html to targets
+    ansible.builtin.copy:
+      src: index.html
+      dest: /var/www/html
+      mode: '0755'
+
+  - name: service "{{ pkg_name }}"  start
+    service:
+      name: vsftpd
+      state: "{{ svc_state }}"
+      enabled: yes
+
+...
+
