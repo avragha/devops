@@ -1,0 +1,41 @@
+---
+- name: Sample playbook to install and configure vsftpd
+  hosts: test
+   vars:
+    pkg_state: present
+    svc_state: started
+    pkg_name: vsftpd
+    ka: Off
+    Mka: '150'
+
+
+  tasks: 
+  - name: get variable from facts
+    debug: 
+      msg: This machine time zone runs @ {{ ansible_date_time.tz }} 
+      
+  - name: install FTP when the OS is Ubuntu
+    apt:
+      pkg: "{{ pkg_name }}"
+      state: "{{ pkg_state }}"
+    when: ansible_os_family == "Debian" 
+
+  - name: move the file index.html
+    file:
+      src: index.html
+      path: /root/index.html
+      state: file 
+
+  - name: install FTP when the OS is redhat/centos
+    yum:
+      name: "{{ pkg_name }}"
+      state: "{{ pkg_state }}"
+    when: ansible_os_family == "RedHat" 
+
+  - name: service FTP start
+    service:
+      name: vsftpd
+      state: "{{ svc_state }}"
+      enabled: yes
+
+...
