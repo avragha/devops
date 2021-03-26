@@ -41,7 +41,7 @@
       state: "{{ svc_state }}"
       enabled: yes
 
-# comment added by Arun
+# comment added by Arun on 27thMarch
   - name: Template a file to /etc/file.conf
     ansible.builtin.template:
       src: sample.j2
