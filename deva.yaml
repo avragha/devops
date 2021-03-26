@@ -8,6 +8,7 @@
     variable1: 'Hello'
     variable2: 'Arun'
     variable3: 'Hello Ragha'
+    variable4: 'Hello Deva,John,Hari'
 
   tasks: 
   - name: get variable from facts
