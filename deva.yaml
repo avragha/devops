@@ -5,6 +5,7 @@
     pkg_state: present
     svc_state: started
     pkg_name: vsftpd
+
     variable1: 'Hello'
     variable2: 'Arun'
     variable3: 'Hello Ragha'
@@ -49,4 +50,3 @@
       mode: '0644'
 
 ...
-
