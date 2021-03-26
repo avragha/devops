@@ -7,6 +7,7 @@
     pkg_name: vsftpd
     variable1: 'Hello'
     variable2: 'Arun'
+    variable3: 'Hello Ragha'
 
   tasks: 
   - name: get variable from facts
@@ -36,6 +37,7 @@
       name: vsftpd
       state: "{{ svc_state }}"
       enabled: yes
+
 # comment added by Arun
   - name: Template a file to /etc/file.conf
     ansible.builtin.template:
